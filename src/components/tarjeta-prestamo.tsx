@@ -6,6 +6,8 @@ import { colores, espacios, pesos, radios, tamanos } from '@/constants/tema';
 import { formatearFecha } from '@/lib/fechas';
 import type { Libro, Prestamo } from '@/types';
 
+const COLORES_INTERRUPTOR = { false: colores.interruptorApagado, true: colores.primario };
+
 type Props = {
   libro: Libro;
   prestamo: Prestamo;
@@ -33,7 +35,7 @@ export function TarjetaPrestamo({ libro, prestamo, onCambiarRecordatorio, onDevo
           accessibilityLabel={`Recordarme la devolución de ${libro.titulo}`}
           value={recordatorioActivo}
           onValueChange={onCambiarRecordatorio}
-          trackColor={{ false: colores.interruptorApagado, true: colores.primario }}
+          trackColor={COLORES_INTERRUPTOR}
         />
       </View>
       <Boton titulo="Devolver" icono="return-down-back" variante="peligro" onPress={onDevolver} />
