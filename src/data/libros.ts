@@ -1,4 +1,4 @@
-import type { Libro } from '../types';
+import type { Libro } from '@/types';
 
 /**
  * Catálogo de la biblioteca. Los ISBN de ejemplo son EAN-13 válidos (con dígito verificador).
