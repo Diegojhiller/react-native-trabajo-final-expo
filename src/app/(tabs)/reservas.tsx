@@ -2,7 +2,6 @@ import { router } from 'expo-router';
 import { FlatList, StyleSheet } from 'react-native';
 
 import { AvisosReservas } from '@/components/avisos-reservas';
-import { Boton } from '@/components/boton';
 import { MensajeEstado } from '@/components/mensaje-estado';
 import { TarjetaEspera } from '@/components/tarjeta-espera';
 import { TarjetaPrestamo } from '@/components/tarjeta-prestamo';
@@ -89,9 +88,8 @@ export default function MisReservas() {
         <MensajeEstado
           icono="bookmarks-outline"
           titulo="Todavía no reservaste libros"
-          texto="Buscá un libro en el Catálogo y tocá Reservar.">
-          <Boton titulo="Ir al Catálogo" icono="library" onPress={() => router.navigate('/')} />
-        </MensajeEstado>
+          texto="Buscá un libro en la pestaña Catálogo y tocá Reservar."
+        />
       }
     />
   );
