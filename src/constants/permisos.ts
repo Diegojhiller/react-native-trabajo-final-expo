@@ -1,13 +1,10 @@
-import type Ionicons from '@expo/vector-icons/Ionicons';
-import type { ComponentProps } from 'react';
-
-import type { Recurso } from '@/types';
+import type { NombreIcono, Recurso } from '@/types';
 
 type TextosPermiso = {
   titulo: string;
   beneficio: string;
   bloqueado: string;
-  icono: ComponentProps<typeof Ionicons>['name'];
+  icono: NombreIcono;
 };
 
 /** Textos de la pantalla previa a cada permiso. */

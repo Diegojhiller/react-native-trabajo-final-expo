@@ -1,3 +1,6 @@
+import type Ionicons from '@expo/vector-icons/Ionicons';
+import type { ComponentProps } from 'react';
+
 export type Libro = {
   isbn: string; // 13 dígitos, sin guiones
   titulo: string;
@@ -32,3 +35,5 @@ export type ResultadoReserva =
 export type Recurso = 'camara' | 'notificaciones';
 
 export type EstadoPermiso = 'cargando' | 'concedido' | 'preguntable' | 'bloqueado';
+
+export type NombreIcono = ComponentProps<typeof Ionicons>['name'];
