@@ -43,6 +43,7 @@ export default function Escanear() {
 
   return (
     <ScrollView
+      contentInsetAdjustmentBehavior="automatic"
       style={styles.pantalla}
       contentContainerStyle={styles.contenido}
       keyboardShouldPersistTaps="handled">

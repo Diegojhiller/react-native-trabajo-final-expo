@@ -27,7 +27,10 @@ export default function DetalleLibro() {
 
   if (!libro) {
     return (
-      <View style={styles.pantalla}>
+      <ScrollView
+        style={styles.pantalla}
+        contentContainerStyle={styles.contenido}
+        contentInsetAdjustmentBehavior="automatic">
         <Stack.Screen options={{ title: 'Libro no encontrado' }} />
         <MensajeEstado
           icono="help-circle"
@@ -41,7 +44,7 @@ export default function DetalleLibro() {
             Volver al Catálogo
           </Link>
         </MensajeEstado>
-      </View>
+      </ScrollView>
     );
   }
 
@@ -49,7 +52,10 @@ export default function DetalleLibro() {
   const tengoPrestamo = prestamos.some((p) => p.isbn === libro.isbn);
 
   return (
-    <ScrollView style={styles.pantalla} contentContainerStyle={styles.contenido}>
+    <ScrollView
+      style={styles.pantalla}
+      contentContainerStyle={styles.contenido}
+      contentInsetAdjustmentBehavior="automatic">
       <Stack.Screen options={{ title: libro.titulo }} />
       <View style={styles.ficha}>
         <Text style={styles.titulo} accessibilityRole="header">

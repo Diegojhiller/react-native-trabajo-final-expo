@@ -20,7 +20,10 @@ export default function ConfirmarReserva() {
 
   if (!libro) {
     return (
-      <ScrollView style={styles.pantalla} contentContainerStyle={styles.contenido}>
+      <ScrollView
+        style={styles.pantalla}
+        contentContainerStyle={styles.contenido}
+        contentInsetAdjustmentBehavior="automatic">
         <MensajeEstado
           icono="help-circle"
           titulo="No encontramos ese libro"
@@ -33,7 +36,10 @@ export default function ConfirmarReserva() {
 
   if (yaReservado(libro.isbn) && !confirmado) {
     return (
-      <ScrollView style={styles.pantalla} contentContainerStyle={styles.contenido}>
+      <ScrollView
+        style={styles.pantalla}
+        contentContainerStyle={styles.contenido}
+        contentInsetAdjustmentBehavior="automatic">
         <MensajeEstado
           icono="bookmark"
           titulo="Ya reservaste este libro"
@@ -59,7 +65,10 @@ export default function ConfirmarReserva() {
   }
 
   return (
-    <ScrollView style={styles.pantalla} contentContainerStyle={styles.contenido}>
+    <ScrollView
+      style={styles.pantalla}
+      contentContainerStyle={styles.contenido}
+      contentInsetAdjustmentBehavior="automatic">
       {hayEjemplar ? (
         <MensajeEstado
           icono="book"

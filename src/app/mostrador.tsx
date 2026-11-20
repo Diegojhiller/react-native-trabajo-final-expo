@@ -44,6 +44,7 @@ export default function Mostrador() {
 
   return (
     <FlatList
+      contentInsetAdjustmentBehavior="automatic"
       style={styles.lista}
       contentContainerStyle={styles.contenido}
       data={conEspera}

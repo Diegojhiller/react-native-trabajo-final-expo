@@ -29,63 +29,59 @@ export default function Buscar() {
   const sinTexto = q.trim() === '';
 
   return (
-    <View style={styles.pantalla}>
-      <View style={styles.buscador}>
-        <CampoTexto
-          etiqueta="Título o autor"
-          value={texto}
-          onChangeText={cambiarTexto}
-          placeholder="Por ejemplo: borges"
-          autoCorrect={false}
-          autoCapitalize="none"
-          returnKeyType="search"
-          autoFocus={sinTexto}
-        />
-      </View>
-      <FlatList
-        style={styles.lista}
-        contentContainerStyle={styles.contenido}
-        keyboardShouldPersistTaps="handled"
-        data={resultados}
-        keyExtractor={(libro) => libro.isbn}
-        renderItem={({ item }) => <FilaLibro libro={item} onPress={() => abrirLibro(item.isbn)} />}
-        ListEmptyComponent={
-          <EstadoLista
-            cargando={cargando}
-            textoCargando="Buscando…"
-            error={error}
-            onReintentar={reintentar}
-            vacio={
-              sinTexto
-                ? { icono: 'search', titulo: 'Escribí un título o un autor para buscar' }
-                : {
-                    icono: 'sad-outline',
-                    titulo: 'No encontramos libros',
-                    texto: `No hay resultados para "${q.trim()}". Probá con otra palabra.`,
-                  }
-            }
+    <FlatList
+      contentInsetAdjustmentBehavior="automatic"
+      style={styles.lista}
+      contentContainerStyle={styles.contenido}
+      keyboardShouldPersistTaps="handled"
+      data={resultados}
+      keyExtractor={(libro) => libro.isbn}
+      renderItem={({ item }) => <FilaLibro libro={item} onPress={() => abrirLibro(item.isbn)} />}
+      ListHeaderComponent={
+        <View style={styles.buscador}>
+          <CampoTexto
+            etiqueta="Título o autor"
+            value={texto}
+            onChangeText={cambiarTexto}
+            placeholder="Por ejemplo: borges"
+            autoCorrect={false}
+            autoCapitalize="none"
+            returnKeyType="search"
+            autoFocus={sinTexto}
           />
-        }
-      />
-    </View>
+        </View>
+      }
+      ListEmptyComponent={
+        <EstadoLista
+          cargando={cargando}
+          textoCargando="Buscando…"
+          error={error}
+          onReintentar={reintentar}
+          vacio={
+            sinTexto
+              ? { icono: 'search', titulo: 'Escribí un título o un autor para buscar' }
+              : {
+                  icono: 'sad-outline',
+                  titulo: 'No encontramos libros',
+                  texto: `No hay resultados para "${q.trim()}". Probá con otra palabra.`,
+                }
+          }
+        />
+      }
+    />
   );
 }
 
 const styles = StyleSheet.create({
-  pantalla: {
+  lista: {
     flex: 1,
     backgroundColor: colores.fondo,
   },
   buscador: {
-    padding: espacios.l,
-    paddingBottom: espacios.s,
-  },
-  lista: {
-    flex: 1,
+    marginBottom: espacios.s,
   },
   contenido: {
     padding: espacios.l,
-    paddingTop: espacios.s,
     gap: espacios.s,
   },
 });

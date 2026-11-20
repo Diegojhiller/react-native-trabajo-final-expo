@@ -25,6 +25,7 @@ export default function Catalogo() {
 
   return (
     <FlatList
+      contentInsetAdjustmentBehavior="automatic"
       style={styles.lista}
       contentContainerStyle={styles.contenido}
       data={cargando || error ? [] : libros}

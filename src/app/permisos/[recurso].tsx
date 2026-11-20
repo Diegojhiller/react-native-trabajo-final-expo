@@ -28,7 +28,10 @@ export default function PantallaPermiso() {
 
   if (!esRecurso(recurso)) {
     return (
-      <ScrollView style={styles.pantalla} contentContainerStyle={styles.contenido}>
+      <ScrollView
+        style={styles.pantalla}
+        contentContainerStyle={styles.contenido}
+        contentInsetAdjustmentBehavior="automatic">
         <MensajeEstado icono="help-circle" titulo="No reconocemos ese permiso">
           <Boton titulo="Volver" onPress={() => router.back()} />
         </MensajeEstado>
@@ -66,7 +69,10 @@ export default function PantallaPermiso() {
 
   if (permiso.estado === 'concedido') {
     return (
-      <ScrollView style={styles.pantalla} contentContainerStyle={styles.contenido}>
+      <ScrollView
+        style={styles.pantalla}
+        contentContainerStyle={styles.contenido}
+        contentInsetAdjustmentBehavior="automatic">
         <MensajeEstado icono="checkmark-circle" titulo="¡Listo! El permiso está activado.">
           <Boton
             titulo={paraRecordatorio ? 'Activar el recordatorio' : 'Volver'}
@@ -80,7 +86,10 @@ export default function PantallaPermiso() {
   const bloqueado = permiso.estado === 'bloqueado';
 
   return (
-    <ScrollView style={styles.pantalla} contentContainerStyle={styles.contenido}>
+    <ScrollView
+      style={styles.pantalla}
+      contentContainerStyle={styles.contenido}
+      contentInsetAdjustmentBehavior="automatic">
       <View style={styles.icono}>
         <Ionicons name={textos.icono} size={tamanos.iconoGrande} color={colores.primario} />
       </View>
