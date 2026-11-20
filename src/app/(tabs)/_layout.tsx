@@ -20,7 +20,9 @@ export default function LayoutTabs() {
         options={{
           title: 'Catálogo',
           headerShown: false,
-          tabBarIcon: ({ color, size }) => <Ionicons name="library" size={size} color={color} />,
+          tabBarIcon: ({ focused, size }) => (
+            <Ionicons name="library" size={size} color={focused ? colores.primario : colores.textoSecundario} />
+          ),
         }}
       />
       <Tabs.Screen
@@ -28,7 +30,9 @@ export default function LayoutTabs() {
         options={{
           title: 'Mis reservas',
           tabBarBadge: avisos.length > 0 ? avisos.length : undefined,
-          tabBarIcon: ({ color, size }) => <Ionicons name="bookmarks" size={size} color={color} />,
+          tabBarIcon: ({ focused, size }) => (
+            <Ionicons name="bookmarks" size={size} color={focused ? colores.primario : colores.textoSecundario} />
+          ),
         }}
       />
     </Tabs>

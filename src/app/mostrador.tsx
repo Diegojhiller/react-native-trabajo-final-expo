@@ -58,7 +58,7 @@ export default function Mostrador() {
         />
       )}
       ListHeaderComponent={
-        mensaje ? <AvisoEnApp texto={mensaje} onDescartar={() => setMensaje(null)} /> : null
+        mensaje ? <AvisoEnApp texto={mensaje} onDescartar={() => setMensaje(null)} /> : undefined
       }
       ListEmptyComponent={
         <MensajeEstado
