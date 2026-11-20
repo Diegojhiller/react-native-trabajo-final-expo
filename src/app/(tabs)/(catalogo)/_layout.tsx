@@ -1,4 +1,5 @@
 import { Stack } from 'expo-router';
+import { StyleSheet } from 'react-native';
 
 import { EnlacePersonal } from '@/components/enlace-personal';
 import { colores } from '@/constants/tema';
@@ -15,7 +16,7 @@ export default function LayoutCatalogo() {
       screenOptions={{
         headerBackButtonDisplayMode: 'minimal',
         headerTintColor: colores.primario,
-        contentStyle: { backgroundColor: colores.fondo },
+        contentStyle: styles.contenido,
       }}>
       <Stack.Screen
         name="index"
@@ -26,3 +27,9 @@ export default function LayoutCatalogo() {
     </Stack>
   );
 }
+
+const styles = StyleSheet.create({
+  contenido: {
+    backgroundColor: colores.fondo,
+  },
+});

@@ -1,4 +1,5 @@
 import { Stack } from 'expo-router';
+import { StyleSheet } from 'react-native';
 
 import { colores } from '@/constants/tema';
 import { useBiblioteca } from '@/context/BibliotecaContext';
@@ -15,7 +16,7 @@ export function NavegacionRaiz() {
       screenOptions={{
         headerBackButtonDisplayMode: 'minimal',
         headerTintColor: colores.primario,
-        contentStyle: { backgroundColor: colores.fondo },
+        contentStyle: styles.contenido,
       }}>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen name="buscar" options={{ title: 'Buscar' }} />
@@ -43,3 +44,9 @@ export function NavegacionRaiz() {
     </Stack>
   );
 }
+
+const styles = StyleSheet.create({
+  contenido: {
+    backgroundColor: colores.fondo,
+  },
+});
