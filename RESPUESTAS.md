@@ -18,7 +18,7 @@ Cuando sale bien:
 | 2 | 17 libros | `false` | `null` | Llega la respuesta (800 ms). En `cargar()` se llaman `setLibros`, `setError(null)` y `setCargando(false)` (líneas 30, 31 y 39). React los agrupa (*batching*: junta varios cambios de estado en un solo render), así que hay **un solo** render nuevo. |
 
 Son **2 renders**. En el render 1 el `FlatList` recibe `data=[]` y el `ListEmptyComponent` muestra
-"Cargando el catálogo…" (`src/app/(tabs)/(catalogo)/index.tsx:30` y `:36`).
+"Cargando el catálogo…" (`src/app/(tabs)/(catalogo)/index.tsx:31` y `:37`).
 
 Cuando falla y la persona toca "Reintentar":
 
@@ -225,7 +225,7 @@ lo mediría con el Profiler de React DevTools.
 | 5 | Toca atrás (Android). | Stack raíz: `[(tabs)]` · Tabs: vuelve a **Catálogo** (las tabs usan `backBehavior: 'firstRoute'`) · Stack Catálogo: `[index, libro/9789…]`: se ve el detalle |
 | 6 | Toca la tab "Catálogo". | Como la pestaña ya está activa y su Stack tiene más de una pantalla, el Stack hace `popToTop`: Stack Catálogo `[index]` |
 
-**a) Método del paso 4.** Usé `router.dismissTo('/reservas')` (`src/app/reservar/[isbn].tsx:58`).
+**a) Método del paso 4.** Usé `router.dismissTo('/reservas')` (`src/app/reservar/[isbn].tsx:64`).
 `dismissTo` desapila el Stack raíz hasta encontrar `(tabs)` (saca el modal) y, adentro, cambia a la
 pestaña Mis reservas.
 
@@ -294,7 +294,7 @@ En Expo Go: `exp://<IP>:8081/--/…`.
 dinámico**: el router compara la forma de la URL (`/libro/<algo>`), no los datos. Cualquier valor
 coincide, igual que `/libro/hola`. La responsabilidad de responder bien es **de la pantalla, es
 decir, nuestra**: validar el formato (13 dígitos) y que el libro exista, y mostrar un mensaje claro
-con una salida (`libro/[isbn].tsx:17-44`).
+con una salida (`libro/[isbn].tsx:17-47`).
 
 ### C4. Foco, montaje y primer plano
 
@@ -342,7 +342,7 @@ permitir" queda `denied` con `canAskAgain: false`. Al volver, mi app ya muestra 
 desactivada", y en el paso 3 el modal ofrece directamente "Abrir Ajustes". El paso 4 no existe
 (no hay otro diálogo). El paso 6 es igual: al volver de Ajustes, `AppState` dispara la consulta.
 
-**b) La línea que decide** (`src/app/permisos/[recurso].tsx:91-92`):
+**b) La línea que decide** (`src/app/permisos/[recurso].tsx:100-101`):
 
 ```tsx
 {bloqueado ? (
@@ -638,12 +638,12 @@ datos tocaría solo `api.ts` y ese hook.
 
 | Situación | Qué ve la persona | Dónde se maneja |
 | --- | --- | --- |
-| `obtenerLibros()` falla | "Algo salió mal" con un mensaje claro y un botón **Reintentar** | `src/hooks/useLibros.ts:33-36`, `src/components/estado-lista.tsx:19-25`, `src/app/(tabs)/(catalogo)/index.tsx:36-44` |
-| Se abre `/libro/abc` | "Ese ISBN no es válido: tiene que tener 13 números" y el link **Volver al Catálogo** | `src/app/(tabs)/(catalogo)/libro/[isbn].tsx:17-44` |
+| `obtenerLibros()` falla | "Algo salió mal" con un mensaje claro y un botón **Reintentar** | `src/hooks/useLibros.ts:33-36`, `src/components/estado-lista.tsx:19-25`, `src/app/(tabs)/(catalogo)/index.tsx:37-45` |
+| Se abre `/libro/abc` | "Ese ISBN no es válido: tiene que tener 13 números" y el link **Volver al Catálogo** | `src/app/(tabs)/(catalogo)/libro/[isbn].tsx:17-47` |
 | Se escanea un ISBN que no está en el catálogo | Un aviso en la pantalla con el código leído; la cámara sigue escaneando y el aviso no se repite | `src/app/(tabs)/(catalogo)/escanear.tsx:38-41` |
-| La cámara está bloqueada | "La cámara está desactivada", el botón **Cómo activarla** (lleva a **Abrir Ajustes**) y el campo para escribir el ISBN | `src/components/zona-camara.tsx:51-56`, `src/app/permisos/[recurso].tsx:91-92`, `src/components/ingreso-isbn.tsx` |
-| Las notificaciones están denegadas | En Mis reservas: "Las notificaciones están desactivadas: los avisos de la biblioteca van a aparecer acá", y los avisos dentro de la app | `src/app/(tabs)/reservas.tsx:82-86`, `src/app/permisos/[recurso].tsx:50`, `src/context/BibliotecaContext.tsx:192-196` |
-| Se intenta reservar un libro ya reservado | "Ya reservaste este libro… No se puede reservar dos veces", con **Ver mis reservas** y **Cerrar** | `src/app/reservar/[isbn].tsx:34-45`, `src/context/BibliotecaContext.tsx:99-101` |
+| La cámara está bloqueada | "La cámara está desactivada", el botón **Cómo activarla** (lleva a **Abrir Ajustes**) y el campo para escribir el ISBN | `src/components/zona-camara.tsx:51-56`, `src/app/permisos/[recurso].tsx:100-101`, `src/components/ingreso-isbn.tsx` |
+| Las notificaciones están denegadas | En Mis reservas: "Las notificaciones están desactivadas: los avisos de la biblioteca van a aparecer acá", y los avisos dentro de la app | `src/app/(tabs)/reservas.tsx:81-85`, `src/app/permisos/[recurso].tsx:53`, `src/context/BibliotecaContext.tsx:192-196` |
+| Se intenta reservar un libro ya reservado | "Ya reservaste este libro… No se puede reservar dos veces", con **Ver mis reservas** y **Cerrar** | `src/app/reservar/[isbn].tsx:37-51`, `src/context/BibliotecaContext.tsx:99-101` |
 | "Entregar al siguiente" con la lista vacía | El libro deja de aparecer en el mostrador (solo se listan colas con personas). Si no queda ninguno: "No hay libros con lista de espera". Si se llegara a llamar con la cola vacía, devuelve `null` y se muestra "ya no tiene personas esperando" | `src/context/BibliotecaContext.tsx:174-176`, `src/app/mostrador.tsx:36-37` |
 | Login con clave incorrecta | "El usuario o la clave no son correctos. Revisalos e intentá de nuevo." El modal sigue abierto | `src/app/login.tsx:21-22` |
 
