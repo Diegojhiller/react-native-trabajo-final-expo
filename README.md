@@ -33,7 +33,7 @@ clave `ipf2026`. Están fijos en `src/constants/biblioteca.ts`.
 
 ## Árbol de rutas (`src/app`)
 
-```
+```text
 src/app/
 ├── _layout.tsx                  Stack raíz · BibliotecaProvider · Stack.Protected · anchor '(tabs)'
 ├── +not-found.tsx               cualquier otra URL → 404 que muestra la ruta
@@ -151,7 +151,7 @@ Ejemplo con Expo Go: `npx uri-scheme open "exp://192.168.0.10:8081/--/buscar?q=b
 
 ## Salida de lint y tipos
 
-```
+```text
 $ npx expo lint
 (sin errores ni advertencias, código de salida 0)
 
