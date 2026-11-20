@@ -375,7 +375,7 @@ fecha de devolución" de un libro que **ya devolvió**. Es información falsa y 
 (`BibliotecaContext.tsx:122-130`).
 
 **b)** El identificador se guarda en el **Context, en memoria**, dentro del préstamo
-(`recordatorioId`, línea 145).
+(`recordatorioId`, línea 142).
 
 Si la app se cierra antes de que llegue:
 - **La notificación igual llega**, porque la programó el sistema operativo y no depende de que la
