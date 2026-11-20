@@ -161,6 +161,41 @@ $ npx tsc --noEmit
 
 ## Capturas
 
-Las capturas están en la carpeta [`capturas/`](capturas/): Catálogo cargando, con error y con datos;
-buscador; detalle inexistente; reserva con y sin ejemplares; escáner en sus cuatro estados;
-notificación recibida; mostrador antes y después de "Entregar al siguiente"; pantalla 404.
+Las capturas están en la carpeta [`capturas/`](capturas/). Se sacaron de la **versión web** de la
+app (`npx expo start --web`) en Chrome, con el tamaño de pantalla de un iPhone (390 × 844), porque
+el teléfono de prueba no estuvo disponible.
+
+| # | Pantalla | Archivo |
+| --- | --- | --- |
+| 1 | Catálogo cargando | [`01-catalogo-cargando.png`](capturas/01-catalogo-cargando.png) |
+| 2 | Catálogo con error y "Reintentar" | [`02-catalogo-error.png`](capturas/02-catalogo-error.png) |
+| 3 | Catálogo con datos | [`03-catalogo-datos.png`](capturas/03-catalogo-datos.png) |
+| 4 | Buscador (`/buscar?q=borges`) | [`04-buscador.png`](capturas/04-buscador.png) |
+| 5 | Detalle inexistente (`/libro/123`) | [`05-detalle-inexistente.png`](capturas/05-detalle-inexistente.png) |
+| 6 | Detalle de un libro | [`06-detalle-libro.png`](capturas/06-detalle-libro.png) |
+| 7 | Reserva con ejemplares (préstamo por 7 días) | [`07-reserva-con-ejemplares.png`](capturas/07-reserva-con-ejemplares.png) |
+| 8 | Reserva sin ejemplares (posición en la espera) | [`08-reserva-sin-ejemplares.png`](capturas/08-reserva-sin-ejemplares.png) |
+| 9 | Mis reservas (préstamo y espera) | [`09-mis-reservas.png`](capturas/09-mis-reservas.png) |
+| 10 | Vistos recientemente (Pila) | [`10-vistos-recientemente.png`](capturas/10-vistos-recientemente.png) |
+| 11 | Pantalla previa al permiso de notificaciones | [`11-permiso-previo-notificaciones.png`](capturas/11-permiso-previo-notificaciones.png) |
+| 12 | Login con clave incorrecta | [`12-login-incorrecto.png`](capturas/12-login-incorrecto.png) |
+| 13 | Mostrador antes de "Entregar al siguiente" | [`13-mostrador-antes.png`](capturas/13-mostrador-antes.png) |
+| 14 | Mostrador después de "Entregar al siguiente" | [`14-mostrador-despues.png`](capturas/14-mostrador-despues.png) |
+| 15 | Escáner: cargando | [`15-escaner-cargando.png`](capturas/15-escaner-cargando.png) |
+| 16 | Escáner: preguntable | [`16-escaner-preguntable.png`](capturas/16-escaner-preguntable.png) |
+| 17 | Pantalla previa al permiso de cámara | [`17-permiso-previo-camara.png`](capturas/17-permiso-previo-camara.png) |
+| 18 | Pantalla 404 | [`18-pantalla-404.png`](capturas/18-pantalla-404.png) |
+
+Aclaraciones:
+
+- **Escáner cargando (15):** en un teléfono la consulta del permiso dura milisegundos y el estado no
+  llega a verse. Para capturarlo, el navegador de prueba demoró 2 segundos la respuesta de
+  `navigator.permissions.query`; el código de la app no se modificó.
+- **Pendientes para el teléfono:** el escáner **concedido** (cámara funcionando), el escáner
+  **bloqueado** y la **notificación recibida** no se pueden mostrar en la versión web:
+  - En web, `expo-camera` siempre informa `canAskAgain: true`, así que el estado "bloqueado" no
+    existe en el navegador.
+  - El lector de códigos web descarga un componente desde internet que la red de prueba bloqueó.
+  - `expo-notifications` no programa notificaciones locales en web.
+
+  En Expo Go (iPhone), la cámara se abrió correctamente cuando el permiso estaba concedido.
